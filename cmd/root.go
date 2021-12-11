@@ -1,0 +1,23 @@
+package cmd
+
+import "github.com/spf13/cobra"
+
+func NewCommand() *cobra.Command {
+	c := &cobra.Command{
+		Example: "kay get test key",
+		Version: version,
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			return cmd.Help()
+		},
+	}
+
+	c.AddCommand(NewGetCommand(), NewSetCommand(), NewDelCommand(), NewDatabasesCommand())
+
+	c.PersistentFlags().StringVar(&confPath, "config", "", "Path for config file")
+
+	return c
+}
+
+func Execute() error {
+	return NewCommand().Execute()
+}

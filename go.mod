@@ -3,16 +3,17 @@ module argc.in/kay
 go 1.17
 
 require (
+	github.com/boltdb/bolt v1.3.1
 	github.com/cockroachdb/pebble v0.0.0-20211210044615-a9a2b6e328bb
-	github.com/mitchellh/go-homedir v1.1.0
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v0.0.5
+	github.com/syndtr/goleveldb v1.0.0
+	go.etcd.io/bbolt v1.3.6
 	gopkg.in/ini.v1 v1.66.2
 )
 
 require (
 	github.com/DataDog/zstd v1.4.5 // indirect
-	github.com/boltdb/bolt v1.3.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
 	github.com/cockroachdb/errors v1.8.1 // indirect
 	github.com/cockroachdb/logtags v0.0.0-20190617123548-eb05cc24525f // indirect
@@ -26,7 +27,6 @@ require (
 	github.com/kr/text v0.1.0 // indirect
 	github.com/spf13/pflag v1.0.3 // indirect
 	github.com/stretchr/testify v1.7.0 // indirect
-	github.com/syndtr/goleveldb v1.0.0 // indirect
 	golang.org/x/exp v0.0.0-20200513190911-00229845015e // indirect
 	golang.org/x/sys v0.0.0-20210909193231-528a39cd75f3 // indirect
 )

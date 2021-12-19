@@ -1,17 +1,21 @@
 package cmd
 
-import "argc.in/kay/kv"
+import (
+	"io"
 
-func openDatabase(name string) (kv.KeyValue, error) {
+	"argc.in/kay/kv"
+)
+
+func openDatabase(name string) (kv.KeyValue, io.Closer, error) {
 	s, err := conf.Section(name)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	keyvalue, err := kv.Open(name, s)
+	keyvalue, closer, err := kv.Open(s)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return keyvalue, nil
+	return keyvalue, closer, nil
 }

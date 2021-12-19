@@ -1,27 +1,29 @@
 package kv
 
 import (
+	"io"
+
 	"github.com/pkg/errors"
 
 	"argc.in/kay/config"
 )
 
-func Open(name string, s config.Section) (KeyValue, error) {
-	keyvalue, err := openConn(name, s)
+func Open(s config.Section) (KeyValue, io.Closer, error) {
+	keyvalue, err := openConn(s)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	if initializer, ok := keyvalue.(Initializer); ok {
 		if err := initializer.Init(); err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 	}
 
-	return keyvalue, nil
+	return keyvalue, getCloser(keyvalue), nil
 }
 
-func openConn(name string, s config.Section) (KeyValue, error) {
+func openConn(s config.Section) (KeyValue, error) {
 	driver := getDriver(s.DriverName())
 	if driver == nil {
 		return nil, ErrDriverNotFound

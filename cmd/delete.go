@@ -19,10 +19,11 @@ func NewDelCommand() *cobra.Command {
 func runDel(cmd *cobra.Command, args []string) error {
 	name, key := args[0], args[1]
 
-	keyvalue, err := openDatabase(name)
+	keyvalue, closer, err := openDatabase(name)
 	if err != nil {
 		return err
 	}
+	defer closer.Close()
 
 	deleter, ok := keyvalue.(kv.Deleter)
 	if !ok {

@@ -16,10 +16,11 @@ func NewSetCommand() *cobra.Command {
 func runSet(cmd *cobra.Command, args []string) error {
 	name, key, value := args[0], args[1], args[2]
 
-	keyvalue, err := openDatabase(name)
+	keyvalue, closer, err := openDatabase(name)
 	if err != nil {
 		return err
 	}
+	defer closer.Close()
 
 	if err := keyvalue.Set(key, []byte(value)); err != nil {
 		return err

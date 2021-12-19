@@ -12,7 +12,12 @@ func NewCommand() *cobra.Command {
 		},
 	}
 
-	c.AddCommand(NewGetCommand(), NewSetCommand(), NewDelCommand(), NewDatabasesCommand())
+	c.AddCommand(
+		NewGetCommand(),
+		NewSetCommand(),
+		NewDelCommand(),
+		NewWatchCommand(),
+		NewDatabasesCommand())
 
 	c.PersistentFlags().StringVar(&confPath, "config", "", "Path for config file")
 

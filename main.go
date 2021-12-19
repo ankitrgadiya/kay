@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"argc.in/kay/cmd"
+	_ "argc.in/kay/driver/badger"
 	_ "argc.in/kay/driver/bbolt"
 	_ "argc.in/kay/driver/boltdb"
 	_ "argc.in/kay/driver/diskv"

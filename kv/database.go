@@ -8,6 +8,11 @@ import (
 	"argc.in/kay/config"
 )
 
+// Open opens a new database connection based on the configuration specified in
+// the Section.
+//
+// The Section must specify a Driver that is registered in this package to
+// successfully open the connection.
 func Open(s config.Section) (KeyValue, io.Closer, error) {
 	keyvalue, err := openConn(s)
 	if err != nil {

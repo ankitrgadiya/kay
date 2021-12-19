@@ -4,6 +4,7 @@ import "github.com/spf13/cobra"
 
 func NewCommand() *cobra.Command {
 	c := &cobra.Command{
+		Use:     "kay",
 		Example: "kay get test key",
 		Version: version,
 		RunE: func(cmd *cobra.Command, _ []string) error {

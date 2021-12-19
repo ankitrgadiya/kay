@@ -6,10 +6,11 @@ import (
 
 func NewSetCommand() *cobra.Command {
 	return &cobra.Command{
-		Use:   "set DATABASE KEY VALUE",
-		Short: "Sets the key from database",
-		RunE:  runSet,
-		Args:  cobra.ExactArgs(3),
+		Use:          "set DATABASE KEY VALUE",
+		Short:        "Sets the key from database",
+		RunE:         runSet,
+		SilenceUsage: true,
+		Args:         cobra.ExactArgs(3),
 	}
 }
 

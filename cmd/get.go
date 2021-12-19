@@ -8,10 +8,11 @@ import (
 
 func NewGetCommand() *cobra.Command {
 	return &cobra.Command{
-		Use:   "get DATABASE KEY",
-		Short: "Gets the key from database",
-		RunE:  runGet,
-		Args:  cobra.ExactArgs(2),
+		Use:          "get DATABASE KEY",
+		Short:        "Gets the key from database",
+		RunE:         runGet,
+		SilenceUsage: true,
+		Args:         cobra.ExactArgs(2),
 	}
 }
 

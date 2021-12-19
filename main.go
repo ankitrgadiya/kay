@@ -1,7 +1,7 @@
 package main // import "argc.in/kay"
 
 import (
-	"log"
+	"os"
 
 	"argc.in/kay/cmd"
 	_ "argc.in/kay/driver/bbolt"
@@ -12,6 +12,6 @@ import (
 
 func main() {
 	if err := cmd.Execute(); err != nil {
-		log.Fatal(err)
+		os.Exit(1)
 	}
 }

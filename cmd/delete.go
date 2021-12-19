@@ -9,10 +9,11 @@ import (
 
 func NewDelCommand() *cobra.Command {
 	return &cobra.Command{
-		Use:   "del DATABASE KEY VALUE",
-		Short: "Deletes the key from database",
-		RunE:  runDel,
-		Args:  cobra.ExactArgs(2),
+		Use:          "del DATABASE KEY VALUE",
+		Short:        "Deletes the key from database",
+		RunE:         runDel,
+		SilenceUsage: true,
+		Args:         cobra.ExactArgs(2),
 	}
 }
 

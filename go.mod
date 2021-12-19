@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/boltdb/bolt v1.3.1
 	github.com/cockroachdb/pebble v0.0.0-20211210044615-a9a2b6e328bb
+	github.com/go-redis/redis/v8 v8.11.4
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v0.0.5
 	github.com/syndtr/goleveldb v1.0.0
@@ -15,13 +16,14 @@ require (
 
 require (
 	github.com/DataDog/zstd v1.4.5 // indirect
-	github.com/cespare/xxhash/v2 v2.1.1 // indirect
+	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cockroachdb/errors v1.8.1 // indirect
 	github.com/cockroachdb/logtags v0.0.0-20190617123548-eb05cc24525f // indirect
 	github.com/cockroachdb/redact v1.0.8 // indirect
 	github.com/cockroachdb/sentry-go v0.6.1-cockroachdb.2 // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/coreos/go-systemd/v22 v22.3.2 // indirect
+	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.3 // indirect
@@ -36,9 +38,9 @@ require (
 	go.uber.org/multierr v1.6.0 // indirect
 	go.uber.org/zap v1.17.0 // indirect
 	golang.org/x/exp v0.0.0-20200513190911-00229845015e // indirect
-	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4 // indirect
+	golang.org/x/net v0.0.0-20210428140749-89ef3d95e781 // indirect
 	golang.org/x/sys v0.0.0-20210909193231-528a39cd75f3 // indirect
-	golang.org/x/text v0.3.5 // indirect
+	golang.org/x/text v0.3.6 // indirect
 	google.golang.org/genproto v0.0.0-20210602131652-f16073e35f0c // indirect
 	google.golang.org/grpc v1.38.0 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect

@@ -9,6 +9,7 @@ import (
 	_ "argc.in/kay/driver/etcd"
 	_ "argc.in/kay/driver/leveldb"
 	_ "argc.in/kay/driver/pebble"
+	_ "argc.in/kay/driver/redis"
 )
 
 func main() {

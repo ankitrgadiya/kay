@@ -77,10 +77,41 @@ func (i *impl) Delete(key string) error {
 	return nil
 }
 
+func (i *impl) Watch(ctx context.Context, key string) <-chan kv.Event {
+	eventChan := make(chan kv.Event)
+
+	go func() {
+		watchChan := i.db.Watch(context.Background(), key)
+		for {
+			select {
+			case resp, ok := <-watchChan:
+				if !ok {
+					return
+				}
+
+				processEvents(&resp, eventChan)
+			case <-ctx.Done():
+				return
+			}
+		}
+	}()
+
+	return eventChan
+}
+
 func (i *impl) clientConfig() clientv3.Config {
 	return clientv3.Config{
 		Endpoints: i.Endpoints,
 		Username:  i.Username,
 		Password:  i.Password,
+	}
+}
+
+func processEvents(resp *clientv3.WatchResponse, eventChan chan kv.Event) {
+	for _, e := range resp.Events {
+		eventChan <- kv.Event{
+			Key:   string(e.Kv.Key),
+			Value: e.Kv.Value,
+		}
 	}
 }

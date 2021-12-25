@@ -1,6 +1,9 @@
 package kv
 
-import "context"
+import (
+	"context"
+	"io"
+)
 
 // KeyValue is the most basic interface that each Database MUST implement.
 type KeyValue interface {
@@ -39,4 +42,18 @@ type Event struct {
 type Watcher interface {
 	KeyValue
 	Watch(ctx context.Context, key string) <-chan Event
+}
+
+// Lister defines an extension inteface for KeyValue implementations that can
+// list the keys in the Database.
+type Lister interface {
+	KeyValue
+	List(prefix string) (Iterator, error)
+}
+
+// Iterator defines the interface for iterating over the key-values of the
+// Database.
+type Iterator interface {
+	io.Closer
+	Next() (string, []byte, bool)
 }

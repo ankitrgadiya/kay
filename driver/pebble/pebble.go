@@ -67,3 +67,19 @@ func (i *impl) Delete(key string) error {
 
 	return nil
 }
+
+func (i *impl) List(prefix string) (kv.Iterator, error) {
+	var opt *pebble.IterOptions
+	if prefix != "" {
+		opt = &pebble.IterOptions{
+			LowerBound: []byte(prefix),
+		}
+	}
+
+	cur := i.db.NewIter(opt)
+	if ok := cur.First(); !ok {
+		return nil, errors.Errorf("getting iterator: invalid")
+	}
+
+	return &iter{cur: cur}, nil
+}

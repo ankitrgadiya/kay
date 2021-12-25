@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"io"
 	"text/tabwriter"
 
 	"github.com/pkg/errors"
@@ -43,21 +44,24 @@ func runList(cmd *cobra.Command, args []string) error {
 	}
 	defer i.Close()
 
-	w := tabwriter.NewWriter(cmd.OutOrStdout(), 3, 3, 3, ' ', 0)
+	return displayList(cmd.OutOrStdout(), i)
+}
 
-	fmt.Fprintf(w, "KEY\tVALUE\n")
+func displayList(w io.Writer, i kv.Iterator) error {
+	tw := tabwriter.NewWriter(w, 3, 3, 3, ' ', 0)
+
+	if isInteractive(w) {
+		fmt.Fprintf(tw, "KEY\tVALUE\n")
+	}
+
 	for {
 		key, value, ok := i.Next()
 		if !ok {
 			break
 		}
 
-		fmt.Fprintf(w, "%s\t%s\n", key, string(value))
+		fmt.Fprintf(tw, "%s\t%s\n", key, string(value))
 	}
 
-	if err := w.Flush(); err != nil {
-		return err
-	}
-
-	return nil
+	return tw.Flush()
 }

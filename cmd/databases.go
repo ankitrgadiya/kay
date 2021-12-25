@@ -2,9 +2,12 @@ package cmd
 
 import (
 	"fmt"
+	"io"
 	"text/tabwriter"
 
 	"github.com/spf13/cobra"
+
+	"argc.in/kay/config"
 )
 
 func NewDatabasesCommand() *cobra.Command {
@@ -26,16 +29,19 @@ func runDatabases(cmd *cobra.Command, args []string) error {
 		return nil
 	}
 
-	w := tabwriter.NewWriter(cmd.OutOrStdout(), 3, 3, 3, ' ', 0)
+	return displayDatabases(cmd.OutOrStdout(), sections)
+}
 
-	fmt.Fprintf(w, "NAME\tDRIVER\n")
+func displayDatabases(w io.Writer, sections map[string]config.Section) error {
+	tw := tabwriter.NewWriter(w, 3, 3, 3, ' ', 0)
+
+	if isInteractive(w) {
+		fmt.Fprintf(w, "NAME\tDRIVER\n")
+	}
+
 	for name, section := range sections {
 		fmt.Fprintf(w, "%s\t%s\n", name, section.DriverName())
 	}
 
-	if err := w.Flush(); err != nil {
-		return err
-	}
-
-	return nil
+	return tw.Flush()
 }

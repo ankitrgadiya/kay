@@ -101,3 +101,21 @@ func (i *impl) Delete(key string) error {
 
 	return nil
 }
+
+func (i *impl) List(prefix string) (kv.Iterator, error) {
+	tx, err := i.db.Begin(false)
+	if err != nil {
+		return nil, errors.Wrap(err, "opening read-only transaction")
+	}
+
+	b := tx.Bucket([]byte(i.Bucket))
+	if b == nil {
+		return nil, errors.Errorf("getting bucket %s: not found", i.Bucket)
+	}
+
+	return &iter{
+		tx:     tx,
+		cur:    b.Cursor(),
+		prefix: prefix,
+	}, nil
+}

@@ -17,6 +17,7 @@ func NewCommand() *cobra.Command {
 		NewSetCommand(),
 		NewDelCommand(),
 		NewWatchCommand(),
+		NewListCommand(),
 		NewDatabasesCommand())
 
 	c.PersistentFlags().StringVar(&confPath, "config", "", "Path for config file")

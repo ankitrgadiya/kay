@@ -12,6 +12,7 @@ import (
 	_ "argc.in/kay/driver/leveldb"
 	_ "argc.in/kay/driver/pebble"
 	_ "argc.in/kay/driver/redis"
+	_ "argc.in/kay/driver/sqlite"
 )
 
 func main() {

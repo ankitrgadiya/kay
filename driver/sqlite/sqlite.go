@@ -90,3 +90,15 @@ func (i *impl) List(prefix string) (kv.Iterator, error) {
 
 	return &iter{rows: rows}, nil
 }
+
+func (i *impl) Search(term string) (kv.Iterator, error) {
+	query := fmt.Sprintf(`SELECT %s, %s FROM %s
+                          WHERE %s LIKE ?`, i.KeyColumn, i.ValueColumn, i.Table, i.KeyColumn)
+
+	rows, err := i.conn.QueryContext(context.Background(), query, fmt.Sprintf("%%%s%%", term))
+	if err != nil {
+		return nil, errors.Wrapf(err, "listing keys with prefix: %s", term)
+	}
+
+	return &iter{rows: rows}, nil
+}

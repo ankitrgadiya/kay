@@ -51,6 +51,13 @@ type Lister interface {
 	List(prefix string) (Iterator, error)
 }
 
+// Searcher defines an extension inteface for KeyValue implementations that can
+// search for keys in the Database.
+type Searcher interface {
+	KeyValue
+	Search(term string) (Iterator, error)
+}
+
 // Iterator defines the interface for iterating over the key-values of the
 // Database.
 type Iterator interface {

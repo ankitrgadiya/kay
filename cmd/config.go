@@ -10,7 +10,7 @@ import (
 	"argc.in/kay/config"
 )
 
-const version = "v0.1.0"
+const version = "v0.1.1"
 
 var (
 	confPath string

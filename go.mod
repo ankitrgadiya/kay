@@ -1,6 +1,6 @@
 module argc.in/kay
 
-go 1.17
+go 1.18
 
 require (
 	github.com/boltdb/bolt v1.3.1
@@ -8,7 +8,7 @@ require (
 	github.com/dgraph-io/badger/v3 v3.2103.2
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/mattn/go-sqlite3 v1.14.12
-	github.com/peterbourgon/diskv v2.0.1+incompatible
+	github.com/peterbourgon/diskv/v3 v3.0.1
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v1.4.0
 	github.com/syndtr/goleveldb v1.0.0

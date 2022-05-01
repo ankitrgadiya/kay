@@ -3,7 +3,7 @@
 package diskv
 
 import (
-	"github.com/peterbourgon/diskv"
+	"github.com/peterbourgon/diskv/v3"
 	"github.com/pkg/errors"
 
 	"argc.in/kay/kv"

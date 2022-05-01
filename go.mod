@@ -58,8 +58,8 @@ require (
 	google.golang.org/protobuf v1.26.0 // indirect
 )
 
-replace (
-	// https://deps.dev/advisory/OSV/GO-2021-0113
-	go.opencensus.io => go.opencensus.io v0.23.0
-	golang.org/x/text => golang.org/x/text v0.3.7
+retract (
+	// It is not installable because of Go's requirement to not include replace directive in main modules
+	// https://github.com/golang/go/issues/44840
+	v0.1.0
 )
